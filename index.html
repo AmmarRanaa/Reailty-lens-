@@ -94,6 +94,8 @@
       border-radius: 8px;
       background: rgba(0,255,204,0.2);
       transition: transform 0.2s, background 0.3s;
+      position: relative;
+      z-index: 20;
     }
 
     #ar-cta:hover {
@@ -141,7 +143,7 @@
   </header>
 
   <h1>RealityLens AR Demo</h1>
-  <p class="instructions">Use mouse to rotate, pinch to zoom. On mobile, tap the AR button or below to place the model in your room.</p>
+  <p class="instructions">Use mouse to rotate, pinch to zoom. On mobile, tap the button below to place the model in your room.</p>
 
   <!-- Loading Spinner -->
   <div id="loader"></div>
@@ -150,6 +152,7 @@
   <model-viewer
       id="modelViewer"
       src="model.glb"
+      ios-src="model.usdz"
       ar
       ar-modes="webxr scene-viewer quick-look"
       camera-controls
@@ -187,7 +190,11 @@
 
     // AR CTA click
     arCTA.addEventListener('click', () => {
-      modelViewer.enterAR();
+      if(modelViewer.canActivateAR) {
+        modelViewer.enterAR();
+      } else {
+        alert("AR is not supported on this device/browser.");
+      }
     });
   </script>
 
