@@ -1,58 +1,144 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>RealityLens AR Demo</title>
+  <meta charset="UTF-8">
+  <title>RealityLens AR Demo</title>
 
-    <!-- Model Viewer Script -->
-    <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+  <!-- Model Viewer Script -->
+  <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
 
-    <style>
-        body {
-            margin: 0;
-            background: #111;
-            font-family: Arial, sans-serif;
-            text-align: center;
-            color: white;
-        }
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
 
-        h1 {
-            margin-top: 20px;
-        }
+  <style>
+    /* Reset */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
 
-        model-viewer {
-            width: 100%;
-            height: 80vh;
-        }
+    body {
+      font-family: 'Roboto', sans-serif;
+      background-color: #111;
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+    }
 
-        .btn {
-            margin-top: 15px;
-            padding: 12px 20px;
-            background: #00ffcc;
-            border: none;
-            border-radius: 8px;
-            font-size: 16px;
-            cursor: pointer;
-        }
-    </style>
+    header {
+      width: 100%;
+      padding: 15px 0;
+      background-color: #222;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.5);
+    }
+
+    header img {
+      height: 60px;
+    }
+
+    h1 {
+      margin: 20px 0 10px;
+      font-size: 28px;
+      text-align: center;
+    }
+
+    p.instructions {
+      margin-bottom: 15px;
+      color: #aaa;
+      font-size: 16px;
+      text-align: center;
+    }
+
+    model-viewer {
+      width: 90%;
+      max-width: 700px;
+      height: 80vh;
+      background-color: #222;
+      border-radius: 15px;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.5);
+    }
+
+    /* Loading Spinner */
+    #loader {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      border: 8px solid #f3f3f3;
+      border-top: 8px solid #00ffcc;
+      border-radius: 50%;
+      width: 60px;
+      height: 60px;
+      animation: spin 1s linear infinite;
+      z-index: 10;
+    }
+
+    @keyframes spin {
+      0% { transform: translate(-50%, -50%) rotate(0deg);}
+      100% { transform: translate(-50%, -50%) rotate(360deg);}
+    }
+
+    /* QR Code Section */
+    .qr-section {
+      margin-top: 20px;
+      text-align: center;
+      color: #aaa;
+      font-size: 14px;
+    }
+
+    .qr-section img {
+      margin-top: 10px;
+      width: 120px;
+      height: 120px;
+    }
+  </style>
 </head>
 
 <body>
 
-    <h1>RealityLens AR Demo</h1>
+  <!-- Header / Logo -->
+  <header>
+    <img src="logo.png" alt="Company Logo">
+  </header>
 
-    <model-viewer
-    src="model.glb"
-    ar
-    ar-modes="webxr scene-viewer quick-look"
-    camera-controls
-    auto-rotate
-    shadow-intensity="1"
-    exposure="1"
-    environment-image="neutral"
-    style="background-color: #222;">
-</model-viewer>
+  <h1>RealityLens AR Demo</h1>
+  <p class="instructions">Use mouse to rotate, pinch to zoom. On mobile, tap the AR button to place the model in your room.</p>
+
+  <!-- Loading Spinner -->
+  <div id="loader"></div>
+
+  <!-- 3D Model Viewer -->
+  <model-viewer
+      id="modelViewer"
+      src="model.glb"
+      ar
+      ar-modes="webxr scene-viewer quick-look"
+      camera-controls
+      auto-rotate
+      shadow-intensity="1"
+      exposure="1"
+      environment-image="neutral"
+      style="display:block;">
+  </model-viewer>
+
+  <!-- QR Code (Optional) -->
+  <div class="qr-section">
+    Scan QR to view on mobile:
+    <br>
+    <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://ammarranaa.github.io/Reailty-lens-/" alt="QR Code">
+  </div>
+
+  <script>
+    const loader = document.getElementById('loader');
+    const modelViewer = document.getElementById('modelViewer');
+
+    // Hide loader when model is ready
+    modelViewer.addEventListener('load', () => {
+      loader.style.display = 'none';
+    });
+  </script>
+
 </body>
-
 </html>
-
