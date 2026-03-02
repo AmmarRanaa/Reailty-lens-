@@ -1,58 +1,58 @@
-**# Reailty-lens-
-**RealityLens is a WebAR-based commerce platform that enables businesses to display products in Augmented Reality directly through web browsers without requiring a mobile application
-**2. Problem Statement
-**Traditional e-commerce platforms face high return rates because customers cannot accurately
-visualize products in real-world environments before purchasing.
-**3. Proposed Solution
-**•
-Web-based AR using WebXR
-•
-QR-code instant access to AR products
-•
-Multi-tenant SaaS architecture
-•
-Per-product pricing model
-•
-Analytics and tracking dashboard
-4. System Architecture
-Frontend: WebXR and Three.js Backend: Node.js REST API Database: MySQL multi-tenant
-schema Cloud: Secure 3D model storage
-**5. Database Design
-**•
-tenants
-•
-users
-•
-products
-•
-product_pricing
-•
-subscriptions
-•
-models
-•
-qr_codes
-•
-ar_sessions
-•
-analytics
-**6. Key Features**
-•
-No app installation required
-•
-Cross-platform support (Android & iOS)
-•
-Secure authentication (JWT)
-•
-Scalable SaaS model
-•
-Investor-ready solution
-**7. Future Enhancements
-**•
-AI product recommendations
-•
-AR engagement heatmaps
-•
-3D customization engine
-•
-E-commerce integrations
+# RealityLens – WebAR Demo
+
+## 📌 Overview
+
+RealityLens is a mobile-friendly Web-based Augmented Reality (AR) demo that allows users to view 3D models directly in real-world space using their smartphone browser.
+
+This project demonstrates how products such as clothing, furniture, or other retail items can be visualized using WebAR technology without installing any app.
+
+---
+
+## 🚀 Features
+
+- View 3D models directly in browser  
+- One-tap AR activation  
+- Works on Android (Chrome – Scene Viewer)  
+- Works on iOS (Safari – Quick Look)  
+- Responsive mobile-friendly design  
+- No app installation required  
+
+---
+
+## 🛠 Technologies Used
+
+- HTML5  
+- CSS3  
+- JavaScript  
+- Google Model Viewer  
+- WebXR  
+
+---
+
+## 📱 How It Works
+
+1. User opens the GitHub Pages link.
+2. The 3D model loads in the browser.
+3. User taps **"View in AR"** button.
+4. Camera opens and places the 3D model in real-world environment.
+
+---
+
+## 📂 Project Structure
+
+RealityLens/
+│── index.html
+│── dress.glb
+│── README.md
+
+---
+
+## 🌍 Live Demo
+
+https://ammarranaa.github.io/Reailty-lens-/
+
+---
+
+## 🎯 Purpose
+
+This project is created as a demonstration of how WebAR can enhance online shopping and product visualization by allowing customers to see products in their physical space before purchasing.
