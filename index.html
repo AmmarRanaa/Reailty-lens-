@@ -24,6 +24,7 @@
       min-height: 100vh;
     }
 
+    /* Header / Logo */
     header {
       width: 100%;
       padding: 15px 0;
@@ -51,6 +52,7 @@
       text-align: center;
     }
 
+    /* Model Viewer */
     model-viewer {
       width: 90%;
       max-width: 700px;
@@ -59,31 +61,7 @@
       border-radius: 15px;
       box-shadow: 0 5px 20px rgba(0,0,0,0.5);
     }
-    <p id="ar-cta" style="
-    text-align:center;
-    margin-top:10px;
-    font-size:18px;
-    color:#00ffcc;
-    font-weight:bold;
-    cursor:pointer;
-">
-    📱 Tap here to view in AR
-</p>
-#ar-cta {
-  text-align:center;
-  font-size:18px;
-  color:#00ffcc;
-  font-weight:bold;
-  cursor:pointer;
-  padding: 8px 12px;
-  border-radius: 8px;
-  background: rgba(0,255,204,0.2);
-  transition: transform 0.2s;
-}
 
-#ar-cta:hover {
-  transform: scale(1.1);
-}
     /* Loading Spinner */
     #loader {
       position: absolute;
@@ -104,6 +82,25 @@
       100% { transform: translate(-50%, -50%) rotate(360deg);}
     }
 
+    /* AR CTA */
+    #ar-cta {
+      text-align: center;
+      font-size: 18px;
+      color: #00ffcc;
+      font-weight: bold;
+      cursor: pointer;
+      padding: 10px 15px;
+      margin-top: 10px;
+      border-radius: 8px;
+      background: rgba(0,255,204,0.2);
+      transition: transform 0.2s, background 0.3s;
+    }
+
+    #ar-cta:hover {
+      transform: scale(1.1);
+      background: rgba(0,255,204,0.4);
+    }
+
     /* QR Code Section */
     .qr-section {
       margin-top: 20px;
@@ -117,18 +114,34 @@
       width: 120px;
       height: 120px;
     }
+
+    /* Footer */
+    footer {
+      margin-top: 30px;
+      padding: 15px 0;
+      width: 100%;
+      text-align: center;
+      font-size: 14px;
+      color: #555;
+      background-color: #111;
+    }
+
+    footer a {
+      color: #00ffcc;
+      text-decoration: none;
+    }
   </style>
 </head>
 
 <body>
 
   <!-- Header / Logo -->
- <header>
-  <img src="logo.png" alt="RealityLens Logo">
-</header>
+  <header>
+    <img src="logo.png" alt="RealityLens Logo">
+  </header>
 
   <h1>RealityLens AR Demo</h1>
-  <p class="instructions">Use mouse to rotate, pinch to zoom. On mobile, tap the AR button to place the model in your room.</p>
+  <p class="instructions">Use mouse to rotate, pinch to zoom. On mobile, tap the AR button or below to place the model in your room.</p>
 
   <!-- Loading Spinner -->
   <div id="loader"></div>
@@ -143,51 +156,40 @@
       auto-rotate
       shadow-intensity="1"
       exposure="1"
-      environment-image="neutral"
-      style="display:block;">
+      environment-image="neutral">
   </model-viewer>
 
-  <!-- QR Code (Optional) -->
+  <!-- AR CTA -->
+  <p id="ar-cta">📱 Tap here to view in AR</p>
+
+  <!-- QR Code -->
   <div class="qr-section">
     Scan QR to view on mobile:
     <br>
     <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://ammarranaa.github.io/Reailty-lens-/" alt="QR Code">
   </div>
-   <footer style="margin-top: 30px; padding: 15px 0; width: 100%; text-align: center; font-size: 14px; color: #555; background-color: #111;">
-  Developed by <a href="https://github.com/AmmarRanaa" target="_blank" style="color:#00ffcc; text-decoration:none;">Ammar Rana</a>
-</footer>
 
+  <!-- Footer -->
+  <footer>
+    Developed by <a href="https://github.com/AmmarRanaa" target="_blank">Ammar Anjum</a>
+  </footer>
+
+  <!-- Scripts -->
   <script>
     const loader = document.getElementById('loader');
     const modelViewer = document.getElementById('modelViewer');
+    const arCTA = document.getElementById('ar-cta');
 
     // Hide loader when model is ready
     modelViewer.addEventListener('load', () => {
       loader.style.display = 'none';
     });
-   
+
+    // AR CTA click
+    arCTA.addEventListener('click', () => {
+      modelViewer.enterAR();
+    });
   </script>
-  <script>
-  const loader = document.getElementById('loader');
-  const modelViewer = document.getElementById('modelViewer');
-
-  // Hide loader when model is ready
-  modelViewer.addEventListener('load', () => {
-    loader.style.display = 'none';
-  });
-
-  // --- AR CTA ---
-  const arCTA = document.getElementById('ar-cta');
-
-  arCTA.addEventListener('click', () => {
-    // Enter AR mode
-    modelViewer.enterAR();
-  });
-</script>
 
 </body>
 </html>
-
-
-
-
