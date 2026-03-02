@@ -59,7 +59,31 @@
       border-radius: 15px;
       box-shadow: 0 5px 20px rgba(0,0,0,0.5);
     }
+    <p id="ar-cta" style="
+    text-align:center;
+    margin-top:10px;
+    font-size:18px;
+    color:#00ffcc;
+    font-weight:bold;
+    cursor:pointer;
+">
+    📱 Tap here to view in AR
+</p>
+#ar-cta {
+  text-align:center;
+  font-size:18px;
+  color:#00ffcc;
+  font-weight:bold;
+  cursor:pointer;
+  padding: 8px 12px;
+  border-radius: 8px;
+  background: rgba(0,255,204,0.2);
+  transition: transform 0.2s;
+}
 
+#ar-cta:hover {
+  transform: scale(1.1);
+}
     /* Loading Spinner */
     #loader {
       position: absolute;
@@ -143,9 +167,27 @@
     });
    
   </script>
+  <script>
+  const loader = document.getElementById('loader');
+  const modelViewer = document.getElementById('modelViewer');
+
+  // Hide loader when model is ready
+  modelViewer.addEventListener('load', () => {
+    loader.style.display = 'none';
+  });
+
+  // --- AR CTA ---
+  const arCTA = document.getElementById('ar-cta');
+
+  arCTA.addEventListener('click', () => {
+    // Enter AR mode
+    modelViewer.enterAR();
+  });
+</script>
 
 </body>
 </html>
+
 
 
 
